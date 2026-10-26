@@ -5,7 +5,7 @@ public static class ComCommunication
 {
     static string COM_name;
     static bool isOn = false;
-    static SerialPort hh;
+    static SerialPort COMport;
 
 
     public static void startCommunication(string com_name, string nickname)
@@ -14,15 +14,35 @@ public static class ComCommunication
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine("Ttring To Connect To Port " + com_name);
             COM_name = com_name;
-            hh = new SerialPort(com_name);
-            hh.Open();
+            COMport = new SerialPort(com_name);
+            COMport.Open();
             isOn = true;
-            hh.WriteLine(nickname);
+            COMport.WriteLine(nickname);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Connection Established");
             Console.ForegroundColor = ConsoleColor.White;
             sendmesssage();
-            hh.Close();
+            COMport.Close();
+        } catch
+        {
+            
+        }
+    }
+    public static void startCommunication(string com_name, int baud_rate, string nickname)
+    {
+        try {
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("Ttring To Connect To Port " + com_name);
+            COM_name = com_name;
+            COMport = new SerialPort(com_name, baud_rate);
+            COMport.Open();
+            isOn = true;
+            COMport.WriteLine(nickname);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Connection Established");
+            Console.ForegroundColor = ConsoleColor.White;
+            sendmesssage();
+            COMport.Close();
         } catch
         {
             
@@ -33,12 +53,13 @@ public static class ComCommunication
     private static void sendmesssage()
     {
         string m;
-
         while (isOn)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Message: ");
+            Console.ForegroundColor = ConsoleColor.White;
             m = Console.ReadLine();
-            hh.WriteLine(m);
+            COMport.WriteLine(m);
             if (m.ToLower() == "exit")
             {
                 endConnection();
@@ -48,7 +69,7 @@ public static class ComCommunication
 
     private static void endConnection()
     {
-        hh.Close();
+        COMport.Close();
         isOn = false;
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine("Connection closed with code 'exit'");
@@ -66,6 +87,6 @@ public class program2
         string portName = Console.ReadLine();
         Console.Write("Enter nickname: ");
         string nickname = Console.ReadLine();
-        ComCommunication.startCommunication(portName, nickname);
+        ComCommunication.startCommunication(portName, 10, nickname);
     }
 }
