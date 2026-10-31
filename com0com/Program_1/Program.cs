@@ -1,10 +1,10 @@
-﻿using System;
-using System.IO.Ports;
-
+﻿using System.IO.Ports;
+// try catch ספיציפי
+//לעבוד יותר עם design patterns
 public static class ComCommunication
 {
-    static string COM_name;
-    static string nickname;
+    static string COM_name = "";
+    static string nickname = "";
     static bool isOn = false;
     static SerialPort COMport;
 
@@ -60,7 +60,6 @@ public static class ComCommunication
 
                 Console.Write("New Messege from " + nickname +": ");
                 Console.ForegroundColor = ConsoleColor.White;
-
                 Console.Write(m + "\n");
             }
         }
@@ -82,7 +81,7 @@ public class program1
     public static void Main()
     {
         string name = "COM7";
-        ComCommunication.startCommunication(name, 10);
+        ComCommunication.startCommunication(name, 10); 
         Console.ForegroundColor = ConsoleColor.White;
     }
 }

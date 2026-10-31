@@ -15,7 +15,9 @@ public static class ComCommunication
             Console.WriteLine("Ttring To Connect To Port " + com_name);
             COM_name = com_name;
             COMport = new SerialPort(com_name);
+            //
             COMport.Open();
+            //
             isOn = true;
             COMport.WriteLine(nickname);
             Console.ForegroundColor = ConsoleColor.Green;
@@ -58,7 +60,7 @@ public static class ComCommunication
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Message: ");
             Console.ForegroundColor = ConsoleColor.White;
-            m = Console.ReadLine();
+            m = Console.ReadLine() ?? "";
             COMport.WriteLine(m);
             if (m.ToLower() == "exit")
             {

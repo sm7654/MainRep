@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
+
+.wraper {
+	--connect-ink: #172033;
+	--connect-muted: #788397;
+	--connect-accent: #6958e8;
+	--connect-border: #e3e7f0;
+
+	box-sizing: border-box;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	overflow: hidden;
+	color: var(--connect-ink);
+	font-family: 'DM Sans', sans-serif;
+	
+	background: rgb(255 255 255 / 90%);
+	backdrop-filter: blur(18px);
+
+	padding: 30px;
+
+}
+
+
+
+
+
+
+
+.wraper h2 {
+	box-sizing: border-box;
+	width: min(100%, 560px);
+	margin: 0;
+	border: 1px solid rgb(255 255 255 / 85%);
+	border-bottom: 0;
+	border-radius: 24px 24px 0 0;
+	padding-bottom: 30px;
+	color: var(--connect-ink);
+	font-family: 'Manrope', sans-serif;
+	font-size: clamp(1.8rem, 5vw, 2.25rem);
+	font-weight: 800;
+	letter-spacing: -0.055em;
+	line-height: 1.15;
+}
+
+.inputs_wraper {
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap: wrap;
+	width: min(100%, 560px);
+	gap: 20px;
+	border: 1px solid rgb(255 255 255 / 85%);
+	border-top: 0;
+	border-radius: 0 0 24px 24px;
+}
+
+.inputs_wraper > div {
+	flex: 1 1 calc(50% - 10px);
+	min-width: 0;
+}
+
+.wraper .titles {
+	display: block;
+	margin: 0 0 9px;
+	color: #414b60;
+	font-size: 0.88rem;
+	font-weight: 600;
+}
+
+.Inputs {
+	box-sizing: border-box;
+	width: 100%;
+	min-height: 52px;
+	padding: 14px 16px;
+	border: 1px solid var(--connect-border);
+	border-radius: 12px;
+	outline: none;
+	color: var(--connect-ink);
+	font: inherit;
+	transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.wraper .Inputs:focus,
+.wraper .Inputs:focus {
+	border-color: var(--connect-accent);
+	background: #fff;
+	box-shadow: 0 0 0 4px rgb(105 88 232 / 12%);
+}
+
+.wraper .submitButton {
+	box-sizing: border-box;
+	flex: 1 0 100%;
+	width: 100%;
+	min-height: 52px;
+	margin-top: 4px;
+	padding: 14px 22px;
+	border: 0;
+	border-radius: 12px;
+	background: linear-gradient(135deg, #7666f0, #5c4bd5);
+	box-shadow: 0 9px 20px rgb(105 88 232 / 24%);
+	color: #fff;
+	cursor: pointer;
+	font: inherit;
+	font-weight: 700;
+	transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+
+.wraper .submitButton:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 12px 24px rgb(105 88 232 / 30%);
+	filter: brightness(1.04);
+}
+
+.wraper .submitButton:active {
+	transform: translateY(0);
+	box-shadow: 0 5px 12px rgb(105 88 232 / 22%);
+}
+
+.wraper .submitButton:focus-visible {
+	outline: 3px solid rgb(105 88 232 / 35%);
+	outline-offset: 3px;
+}

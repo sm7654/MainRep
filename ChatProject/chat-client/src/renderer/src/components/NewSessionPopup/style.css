@@ -1,0 +1,133 @@
+.popupWraper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    pointer-events: none;
+    place-items: center;
+    backdrop-filter: blur(2px);
+}
+.sessionPopup {
+  position: relative;
+  width: min(100% - 32px, 440px);
+  padding: 28px;
+  border: 1px solid #e4e7ec;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 16px 48px rgb(16 24 40 / 18%);
+  color: #101828;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.sessionPopupClose {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #667085;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+
+.sessionPopupClose:hover {
+  background: #f2f4f7;
+  color: #101828;
+}
+
+.sessionPopupClose:focus-visible {
+  outline: 2px solid #6172f3;
+  outline-offset: 2px;
+}
+
+.sessionPopupTabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eaecf0;
+}
+
+.sessionPopupTabs button {
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #475467;
+  cursor: pointer;
+  font: inherit;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+
+.sessionPopupTabs button:hover:not(.active) {
+  background: #f2f4f7;
+}
+
+.sessionPopupTabs button.active {
+  background: #eef4ff;
+  color: #3538cd;
+  font-weight: 600;
+}
+
+.sessionPopupState h2 {
+  margin: 0 0 18px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.sessionPopupState form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sessionPopupState label {
+  color: #344054;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.sessionPopupState input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  color: #101828;
+  font: inherit;
+}
+
+.sessionPopupState input:focus {
+  border-color: #6172f3;
+  outline: 3px solid #eef4ff;
+}
+
+.sessionPopupState div > button {
+  align-self: flex-end;
+  margin-top: 8px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #4f46e5;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  transition: background-color 140ms ease;
+}
+
+.sessionPopupState form > button:hover {
+  background: #4338ca;
+}
+
+
+.hidden {
+  display: none;
+  pointer-events: none;
+}
