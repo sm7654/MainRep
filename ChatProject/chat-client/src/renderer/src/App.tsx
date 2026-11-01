@@ -3,7 +3,7 @@ import electronLogo from './assets/electron.svg'
 
 import ConnectPage from './components/ConnectPage/ConnectPage'
 import ChatsPage from './components/ChatsPage/ChatsPage'
-import { Routes, Route, BrowserRouter, useNavigate } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 let x = "";
 
   const ipcHandle = (event, command:string): void => window.electron.ipcRenderer.send(command, 55)
@@ -17,11 +17,11 @@ function App(): React.JSX.Element {
   return (
     <>
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<ConnectPage />} />
-      <Route path="/chats" element={<ChatsPage />} />
-    </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ConnectPage />} />
+        <Route path="/chats" element={<ChatsPage />} />
+      </Routes>
+    </BrowserRouter>
     </>
   )
 }

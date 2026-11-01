@@ -34,10 +34,10 @@ function ConnectPage(): React.JSX.Element {
     }
     
     window.electron.listenConnectionStatus((data) => {
-      let intance = chatMenegment.getIntance()
+      let intance = chatMenegment.getIntance();
       
-      intance.nickname = nickname
-      intance.ID = data[0].target
+      intance.nickname = nickname;
+      intance.ID = data[0].target;
       nav('/chats')
     })
 

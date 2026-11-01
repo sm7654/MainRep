@@ -16,6 +16,7 @@ const api = {}
 
     listenGroupJoined: (callback) =>  ipcRenderer.on('group-joined', (e, ...args) => callback(args)),
 
+    removeLisnersNewMessege: () => ipcRenderer.removeAllListeners('new-messege')
 
   })
   contextBridge.exposeInMainWorld('api', api)

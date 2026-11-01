@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { chatMenegment, group, messege } from '../../ChatManegment'
 import './style.css'
+import { Link } from 'react-router-dom';
 
 
   const Group = new group("group1", "efwef", 10);
@@ -64,9 +65,9 @@ function Chatboxcomponent(): React.JSX.Element {
     
   return (
     <>
-    <div className="chats-container">
+    <nav className="chats-container">
       {chatsArray.map((key) => (
-        <div key={key.groupID} className="chat-row" onClick={() => groupClicked(key)}>
+        <div className="chat-row" >
           
           <div className="chat-left-section">
             <div className='groupImageWraper'>
@@ -78,13 +79,11 @@ function Chatboxcomponent(): React.JSX.Element {
             </span>
           </div>
 
-          <div className="chat-right-section">
-            {Array.isArray(key.members) ? key.members.length : key.members} 
-          </div>
+          
 
         </div>
       ))}
-        </div>
+        </nav>
     </>
   )
 }

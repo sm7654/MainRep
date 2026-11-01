@@ -69,7 +69,7 @@ function handleServerData(data: any) {
   }
 }
 function handleUserData(data: any) {
-
+  console.log("The data is - ", data, "          =========")
   switch (data.type){
       case 0: // messegeUser
       case 1: // messegeGroup
@@ -92,6 +92,7 @@ async function handleData(data: string) {
     handleServerData(Jdata);
   }
   else {
+    console.log("passing data to user handler")
     handleUserData(Jdata);
   }
 }

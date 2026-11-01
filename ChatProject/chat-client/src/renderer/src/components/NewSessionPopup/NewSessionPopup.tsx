@@ -45,7 +45,7 @@ function NewSessionPopup(): React.JSX.Element {
     UserID = event.target.value
   }
 
-  function CreateMessegeUserRequest() {
+  function CreateGroupUserRequest() {
     
     const messege = {
         source: chatMeneg.ID,
@@ -59,7 +59,17 @@ function NewSessionPopup(): React.JSX.Element {
     console.log("hello fron new")
     window.electron.send('writeDataToServer', messege);
   }
+  function CreateChatUserRequest() {
+    const messege = {
+        source: chatMeneg.ID,
+        target: UserID,
+        type: 6, // new chat
+        sender: chatMeneg.nickname,
+        messege: ""
+    }
+    window.electron.send('writeDataToServer', messege);
 
+  }
   return (
     <div className='popupWraper'>
     <div className='sessionPopup'>
@@ -98,7 +108,7 @@ function NewSessionPopup(): React.JSX.Element {
         <div>
           <label>User ID</label>
           <input id='user-id' placeholder='Enter user ID' onChange={changeUserID} />
-          <button>Submit</button>
+          <button onClick={CreateChatUserRequest}>Submit</button>
         </div>
       </section>
 
@@ -116,7 +126,7 @@ function NewSessionPopup(): React.JSX.Element {
         <div>
           <label >Group name</label>
           <input id='new-group-name' placeholder='Enter group name' onChange={changeGroupName} />
-          <button onClick={CreateMessegeUserRequest}>Submit</button>
+          <button onClick={CreateGroupUserRequest}>Submit</button>
         </div>      </section>
     </div>
     </div>

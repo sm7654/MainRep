@@ -24,12 +24,6 @@ export class group {
     }
 
     addMessege(newMessege:messege) {
-        if (this.messeges.length > 0)
-        {
-            newMessege.messegeKey = this.messeges[this.messeges.length - 1].messegeKey + 1
-        } else {
-            newMessege.messegeKey = 1;
-        }
         this.messeges.push(newMessege)
     }
     getMesseges():messege[] {
@@ -44,7 +38,7 @@ export class chatMenegment {
     groupMap = new Map<string, group>();
     nickname:string = ""
     ID:string = ""
-
+    activeChatID: string = ""
     constructor() {
         
     }
@@ -61,10 +55,8 @@ export class chatMenegment {
         if (!this.doesGroupExist(Group.groupID))
             this.groupMap.set(Group.groupID, Group)
     }
-    getGroup(groupID: string) {
-        if (!this.doesGroupExist(groupID))
-            return
-        return this.groupMap.get(groupID)
+    getGroup(groupID: string): group {
+        return this.groupMap.get(groupID) as group
     }
     getMessegesFromGroup(groupID: string) {
         if (!this.doesGroupExist(groupID))

@@ -5,10 +5,12 @@ import MessegesDisplay from '../MessegesDisplay/MessegesDisplay'
 import Chatboxcomponent from '../chatboxComponent/chatboxcomponent'
 import React from 'react';
 import NewSessionPopup from '../NewSessionPopup/NewSessionPopup'
+import { BrowserRouter, Route, Router, useParams } from 'react-router-dom'
 
 
 
 function ChatsPage(): React.JSX.Element {
+  console.log("")
   let chatMeneg = chatMenegment.getIntance()
   function toggleNewSessionPopup() {
     document.getElementsByClassName('popupWraper')[0].classList.remove('hidden')
@@ -36,7 +38,9 @@ function ChatsPage(): React.JSX.Element {
 
         <section className='ChatMessegesSection'>
           <div>{}</div>
-          <MessegesDisplay />
+          
+          
+          
 
           
         </section>
