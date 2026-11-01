@@ -13,11 +13,14 @@ const g = new group("", "", 0);
     console.log(g.messeges);
     const [messegesList, setMessegesList] = useState(g.messeges);
 
-    if (currentGroupIdRef != undefined) {
-      setGroup(chatMeneg.getGroup(currentGroupIdRef.current));
-      setMessegesList(g.messeges);
-      chatMeneg.activeChatID = currentGroupIdRef.current
-    }
+    useEffect(()=> {
+      if (currentGroupIdRef != undefined) {
+        setGroup(chatMeneg.getGroup(currentGroupIdRef.current));
+        setMessegesList(g.messeges);
+        chatMeneg.activeChatID = currentGroupIdRef.current
+      }
+    }, []);
+    
     let [inputMessege, setMessege] = useState("");
     
     function sendMessege() {

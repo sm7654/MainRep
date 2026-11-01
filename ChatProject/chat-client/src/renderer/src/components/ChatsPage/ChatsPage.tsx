@@ -40,6 +40,7 @@ function ChatsPage(): React.JSX.Element {
           <div>{}</div>
           
           
+          <MessegesDisplay />
           
 
           
