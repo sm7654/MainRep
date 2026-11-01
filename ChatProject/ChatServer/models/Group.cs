@@ -54,8 +54,7 @@ public class Group
         ICollection<User> users = members.Values;
         foreach (User u in users)
         {
-            if (u.GetId() != messege.source)
-                new Thread(() => u.send(JsonSerializer.Serialize(messege))).Start();
+            new Thread(() => u.send(JsonSerializer.Serialize(messege))).Start();
         }
     }
 }

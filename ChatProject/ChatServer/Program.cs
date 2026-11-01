@@ -20,10 +20,22 @@ public class Program
     public static ConnectRequest reciveConnectRequest(TcpClient c)
     {
         byte[] LenBuffer = new byte[4];
-        c.GetStream().ReadExactly(LenBuffer);
+        try
+        {
+            c.GetStream().ReadExactly(LenBuffer);    
+        } catch
+        {
+            Console.WriteLine("Error in reading connection-request length");
+        }
         int num = BitConverter.ToInt32(LenBuffer, 0);
         byte[] dataBuffer = new byte[num];
-        c.GetStream().ReadExactly(dataBuffer);
+        try
+        {
+            c.GetStream().ReadExactly(dataBuffer);    
+        } catch
+        {
+            Console.WriteLine("Error in reading connection-request data");
+        }
         string jsonTxt = Encoding.UTF8.GetString(dataBuffer);
         ConnectRequest? deserializedReuqst = JsonSerializer.Deserialize<ConnectRequest>(jsonTxt);
         return deserializedReuqst;

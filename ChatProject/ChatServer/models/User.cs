@@ -56,7 +56,7 @@ public class User
         }
         else
         {
-            services.passMessegeToTarget(jsonTxt);
+            services.passMessegeToTarget(jsonTxt, this);
         }
         
     }

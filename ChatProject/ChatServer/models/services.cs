@@ -74,12 +74,8 @@ public static class services
         return false;
     }
     // create new chat between clients
-    public static void tryCreateNewChat(string targetID, User source)
+    private static void createNewChat(User target, User source)
     {
-        if (!Users.ContainsKey(targetID))
-            return;
-        User? target;
-        Users.TryGetValue(targetID, out target);
         MessagesGenerator generator = MessagesGenerator.GetIntance();
         //send to chat creator new chat messege
         source.send( JsonSerializer.Serialize(generator.createNewChatMessege(source, target)) );
@@ -95,6 +91,15 @@ public static class services
         GroupType messege = generator.createGroupJoined(g, u);
         u.send(JsonSerializer.Serialize(messege));
     }
+    
+    public static void tryCreateNewChat(string targetID, User source)
+    {
+        if (!Users.ContainsKey(targetID))
+            return;
+        User? target;
+        Users.TryGetValue(targetID, out target);
+        createNewChat(source, target);
+    }
     public static Basic ParseMessage(string jsonString) {
         Basic? temp = JsonSerializer.Deserialize<Basic>(jsonString);
         
@@ -102,6 +107,7 @@ public static class services
 
         switch (temp.type)
         {
+            case MessegeType.NewChat:
             case MessegeType.messegeUser:
                 return JsonSerializer.Deserialize<UserType>(jsonString);
 
@@ -110,9 +116,6 @@ public static class services
             case MessegeType.groupCreated:
             case MessegeType.createGroup:
                 return JsonSerializer.Deserialize<GroupType>(jsonString);
-
-            case MessegeType.ConnectStatus:
-                return JsonSerializer.Deserialize<connectResponde>(jsonString);
 
             default:
                 return temp;
@@ -147,18 +150,17 @@ public static class services
         }
         
     } 
-    public static void passMessegeToTarget(string JsonString)
+    public static void passMessegeToTarget(string JsonString, User source)
     {
 
         Group? g;
-        User? u;
+        User? target;
         Basic? deserializedMessege;
         
         deserializedMessege = JsonSerializer.Deserialize<Basic>(JsonString);
-//        if ()
 
         
-        if (groups.TryGetValue(deserializedMessege.target, out g))
+        if (groups != null && groups.TryGetValue(deserializedMessege.target, out g))
         {
             Console.WriteLine("this is a group messege ");
             GroupType messege = (GroupType)ParseMessage(JsonString);
@@ -167,10 +169,17 @@ public static class services
         {
             Console.WriteLine("this is a user messege ");
          
-            if (!Users.TryGetValue(deserializedMessege.target, out u))
+            if (!Users.TryGetValue(deserializedMessege.target, out target))
                 return;
-            UserType messege = (UserType)ParseMessage(JsonString);
-            u.send(JsonSerializer.Serialize(messege));
+
+            if (deserializedMessege.type == MessegeType.NewChat)
+            {
+                tryCreateNewChat(deserializedMessege.target, source);
+                return;
+            }
+            UserType messege = (UserType)ParseMessage(JsonString);            
+            target.send(JsonSerializer.Serialize(messege));
+            
         }
     }
 
